@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Estelle's Studio ⭐</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f1319;
+            --bg-light: #1a212b;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #e2d8c3;
+            --magic-glow: rgba(212, 175, 55, 0.4);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 0%, #2a1f2d 0%, var(--bg-dark) 70%);
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-bottom: 50px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            background: linear-gradient(to bottom, rgba(15, 19, 25, 0.9), rgba(26, 33, 43, 0.8));
+            border-bottom: 2px solid var(--gold);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--magic-glow);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Cinzel', serif;
+            font-size: 3.5em;
+            color: var(--gold-light);
+            text-shadow: 0 0 10px var(--magic-glow), 0 0 20px var(--magic-glow);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            color: var(--text-main);
+            font-size: 1.3em;
+            margin-top: 20px;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            padding: 10px 40px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(26, 33, 43, 0.8);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7), 0 0 15px var(--magic-glow), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-light);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 4px;
+            object-fit: contain;
+            object-position: center;
+            aspect-ratio: 1/1;
+            filter: brightness(0.9) sepia(0.2);
+            transition: 0.3s ease;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, rgba(26, 33, 43, 0) 70%);
+            /* Lueur magique pour les images PNG transparentes */
+        }
+
+        .card:hover img {
+            filter: brightness(1.05) sepia(0.1);
+            border-color: var(--gold);
+        }
+
+        .card h3 {
+            margin: 20px 0 10px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5em;
+            color: var(--gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #bfaea3;
+            flex-grow: 1;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(15, 19, 25, 0.9);
+            border-top: 1px solid var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--gold);
+            margin-top: 50px;
+            letter-spacing: 2px;
+            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        button {
+            background: linear-gradient(to bottom, #2a221b, #1a1612);
+            border: 1px solid var(--gold);
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1em;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: linear-gradient(to bottom, #3a2f25, #2a221b);
+            box-shadow: 0 0 15px var(--magic-glow);
+            text-shadow: 0 0 5px var(--gold-light);
+        }
+
+        .category-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2.8em;
+            margin: 100px 0 40px;
+            color: var(--gold-light);
+            text-shadow: 0 0 15px var(--magic-glow);
+            position: relative;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-title::before,
+        .category-title::after {
+            content: '';
+            height: 1px;
+            background: linear-gradient(to var(--dir, right), rgba(212, 175, 55, 0), var(--gold), rgba(212, 175, 55, 0));
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+
+        .category-title::before {
+            --dir: left;
+        }
+
+        .category-title::after {
+            --dir: right;
+        }
+
+        .category-title span {
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .category-title span::after {
+            content: '⬥';
+            display: block;
+            font-size: 0.3em;
+            color: var(--gold);
+            margin-top: 5px;
+            opacity: 0.7;
+        }
+
+        .about-section {
+            background: rgba(26, 33, 43, 0.85);
+            border: 2px solid var(--gold);
+            margin: -30px auto 50px;
+            padding: 40px 60px;
+            max-width: 800px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border: 1px dashed rgba(212, 175, 55, 0.4);
+            pointer-events: none;
+        }
+
+        .about-section h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            margin-top: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--magic-glow);
+        }
+
+        .about-section p {
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 1.1em;
+            text-align: justify;
+        }
+
+        /* ── MODAL GALERIE ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: linear-gradient(135deg, #1a212b 0%, #0f1319 100%);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 0 40px var(--magic-glow), 0 20px 60px rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-box::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border: 1px dashed rgba(212, 175, 55, 0.3);
+            border-radius: 6px;
+            pointer-events: none;
+        }
+
+        .modal-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 1.8em;
+            margin: 0 0 20px;
+            text-align: center;
+            text-shadow: 0 0 10px var(--magic-glow);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            margin: 0;
+            box-shadow: none;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--gold-light);
+            box-shadow: none;
+            background: none;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .modal-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(26, 33, 43, 0) 70%);
+            cursor: zoom-in;
+            transition: transform 0.2s, border-color 0.2s;
+            filter: brightness(0.92);
+        }
+
+        .modal-grid img:hover {
+            transform: scale(1.04);
+            border-color: var(--gold);
+            filter: brightness(1.05);
+        }
+
+        /* Lightbox plein écran sur clic */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 1px solid var(--gold);
+            border-radius: 6px;
+            box-shadow: 0 0 30px var(--magic-glow);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            background: none;
+            border: none;
+            color: var(--gold-light);
+            font-size: 2.5em;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* ── RESPONSIVITÉ (MOBILE & TABLETTE) ── */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+                padding: 0 10px;
+            }
+
+            .category-title {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 10px 20px 40px;
+                gap: 20px;
+            }
+
+            .about-section {
+                padding: 30px 20px;
+                margin: -20px 15px 40px;
+            }
+
+            .modal-box {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 1.1em;
+            }
+
+            .category-title {
+                font-size: 1.6em;
+            }
+
+            .about-section h2 {
+                font-size: 1.8em;
+            }
+
+            .card h3 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🧶 Little Estelle's Studio ⭐</h1>
+        <p>Des créations faites avec passion et style</p>
+    </header>
+
+    <section class="about-section">
+        <h2>À propos de moi</h2>
+        <p>
+            Coucou ! Je suis la créatrice derrière <strong>Little Estelle's Studio</strong> (le nom est encore en
+            réflexion ! 🤔).<br><br>
+            Cela fait maintenant 5 ans que je me suis lancée dans l'aventure du crochet en autodidacte.
+            J'ai tout appris pas à pas grâce à des tutoriels YouTube en anglais. Aujourd'hui, je suis tellement
+            passionnée par
+            cet art du fil que j'ai pour grand rêve d'en faire mon futur métier (on y croit ! ✨).<br><br>
+            En attendant, je vous invite à découvrir mes créations (j'alimente mon site au fur et à
+            mesure). J'espère qu'elles vous plairont ! 🌠<br><br>
+            <strong>💌 Côté commandes :</strong> Si une création vous fait de l'œil ou si vous avez une idée
+            personnalisée, n'hésitez pas
+            à venir m'en parler et passer commande en message privé (<span
+                style="color: var(--gold-light); font-style: italic; text-shadow: 0 0 5px var(--gold);">Prix en
+                DM</span>) !
+        </p>
+    </section>
+
+    <h2 class="category-title"><span>Univers Pokémon</span></h2>
+    <section class="container">
+        <div class="card">
+            <img src="noctali_3-removebg-preview (1).png" alt="Noctali" style="transform: scale(1.15) translateY(4%);">
+            <h3>Noctali</h3>
+            <p>La célèbre évolution Ténèbres en porte-clés.</p>
+            <button onclick="openModal('noctali')">Voir plus</button>
+        </div>
+
+        <div class="card">
+            <img src="nymphali_1-removebg-preview.png" alt="Nymphali" style="transform: scale(1.25) translateY(4%);">
+            <h3>Nymphali</h3>
+            <p>Une adorable évolution Fée avec de jolis rubans.</p>
+            <button onclick="openModal('nymphali')">Voir plus</button>
+        </div>
+
+        <div class="card">
+            <img src="mentali_1-removebg-preview.png" alt="Mentali" style="transform: scale(1.35);">
+            <h3>Mentali</h3>
+            <p>L'élégante évolution Psy pour veiller sur vous.</p>
+            <button onclick="openModal('mentali')">Voir plus</button>
+        </div>
+    </section>
+
+    <h2 class="category-title"><span>Anime</span></h2>
+    <section class="container">
+        <div class="card">
+            <img src="luffy-removebg-preview.png" alt="Luffy chat" style="transform: scale(1.25);">
+            <h3>Luffy chat</h3>
+            <p>Un pirate félin inspiré de l'univers de One Piece.</p>
+            <button onclick="openModal('luffy')">Voir plus</button>
+        </div>
+    </section>
+
+    <h2 class="category-title"><span>Vêtements</span></h2>
+    <section class="container">
+        <div class="card">
+            <img src="spider_man_2-removebg-preview.png" alt="Bonnet spider man" style="transform: scale(1.9);">
+            <h3>Bonnet spider man</h3>
+            <p>Un bonnet doux et chaud aux couleurs de Spider-Man.</p>
+            <button onclick="openModal('spiderman')">Voir plus</button>
+        </div>
+    </section>
+
+    <h2 class="category-title"><span>Animaux</span></h2>
+    <section class="container">
+        <div class="card">
+            <img src="collier_chien-removebg-preview.png" alt="Collier pour chien" style="transform: scale(1.1);">
+            <h3>Collier pour chien</h3>
+            <p>Un bel accessoire fait main et coloré pour votre toutou.</p>
+            <button onclick="openModal('collier')">Voir plus</button>
+        </div>
+    </section>
+
+    <h2 class="category-title"><span>Autres</span></h2>
+    <section class="container">
+        <div class="card">
+            <img src="chat_noir_1-removebg-preview.png" alt="Chat noir" style="transform: scale(1.7);">
+            <h3>Chat noir</h3>
+            <p>Un petit compagnon félin sombre et mystérieux.</p>
+            <button onclick="openModal('chatnoir')">Voir plus</button>
+        </div>
+    </section>
+
+    <h2 class="category-title"><span>Jeux Vidéo</span></h2>
+    <section class="container">
+        <div class="card">
+            <img src="luma_1-removebg-preview.png" alt="Luma" style="transform: scale(1.5);">
+            <h3>Luma</h3>
+            <p>Une petite étoile lumineuse sortie de l'univers de Mario.</p>
+            <button onclick="openModal('luma')">Voir plus</button>
+        </div>
+    </section>
+
+    <!-- ── MODALE GALERIE ── -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <div class="modal-grid" id="modalGrid"></div>
+        </div>
+    </div>
+
+    <!-- ── LIGHTBOX PLEIN ÉCRAN ── -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <footer>
+        © estl_ jng - Mes créations au crochet :)
+    </footer>
+
+    <script>
+        // ════════════════════════════════════════════════════
+        // GALERIES 
+        // ════════════════════════════════════════════════════
+        const galeries = {
+            noctali: {
+                titre: 'Noctali',
+                photos: [
+                    'noctali_3-removebg-preview (1).png',
+                    'noctali 1.jpeg',
+                    'noctali 2.jpeg',
+                ]
+            },
+            nymphali: {
+                titre: 'Nymphali',
+                photos: [
+                    'nymphali_1-removebg-preview.png',
+                    'nymph 2.jpeg',
+                    'nymph 3.jpeg',
+                ]
+            },
+            mentali: {
+                titre: 'Mentali',
+                photos: [
+                    'mentali_1-removebg-preview.png',
+                    'ment 2.jpeg',
+                    'ment 3.jpeg',
+                ]
+            },
+            luffy: {
+                titre: 'Luffy chat',
+                photos: [
+                    'luffy-removebg-preview.png',
+                ]
+            },
+            spiderman: {
+                titre: 'Bonnet Spider-Man',
+                photos: [
+                    'spider_man_2-removebg-preview.png',
+                    'spider man 1.jpeg',
+                ]
+            },
+            collier: {
+                titre: 'Collier pour chien',
+                photos: [
+                    'collier_chien-removebg-preview.png',
+                    'collier 2.jpeg',
+
+                ]
+            },
+            chatnoir: {
+                titre: 'Chat noir',
+                photos: [
+                    'chat_noir_1-removebg-preview.png',
+                    'chat 2.jpeg',
+                    'chat 3.jpeg',
+                ]
+            },
+            luma: {
+                titre: 'Luma',
+                photos: [
+                    'luma_1-removebg-preview.png',
+                ]
+            },
+        };
+
+        // ── Ouvrir la modale ──
+        function openModal(id) {
+            const data = galeries[id];
+            if (!data) return;
+            document.getElementById('modalTitle').textContent = data.titre;
+            const grid = document.getElementById('modalGrid');
+            grid.innerHTML = '';
+            data.photos.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = data.titre;
+                img.onclick = () => openLightbox(src, data.titre);
+                grid.appendChild(img);
+            });
+            document.getElementById('modalOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOnBg(e) {
+            if (e.target === document.getElementById('modalOverlay')) closeModal();
+        }
+
+        // ── Lightbox plein écran ──
+        function openLightbox(src, alt) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxImg').alt = alt;
+            document.getElementById('lightbox').classList.add('open');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+        }
+
+        // Fermer avec Échap
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { closeModal(); closeLightbox(); }
+        });
+    </script>
+
+</body>
+
+</html>
